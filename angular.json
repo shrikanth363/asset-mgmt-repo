@@ -118,8 +118,13 @@
               "devServerTarget": "asset-mgmt-app:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "asset-mgmt-app"
 }

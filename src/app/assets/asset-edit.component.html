@@ -1,0 +1,152 @@
+<div class="card">
+  <div class="card-header">
+    {{pageTitle}}
+  </div>
+
+  <div class="card-body">
+    <form novalidate
+          (ngSubmit)="saveAsset()"
+          [formGroup]="assetForm">
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"
+               for="assetNameId">Asset Name</label>
+        <div class="col-md-8">
+          <input class="form-control"
+                 id="assetNameId"
+                 type="text"
+                 placeholder="Name (required)"
+                 formControlName="assetName"
+                 [ngClass]="{'is-invalid': displayMessage.assetName }" />
+          <span class="invalid-feedback">
+            {{displayMessage.assetName}}
+          </span>
+        </div>
+      </div>
+
+     
+       <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"
+               for="assetCodeId">Asset Category</label>
+        <div class="col-md-8 ">
+         <select formControlName="assetCategory" class="form-control col-md-8">
+           <option [value]="category" *ngFor="let category of categories">{{ category }}</option>
+       </select>
+          <span class="invalid-feedback">
+            {{displayMessage.assetCategory}}
+          </span>
+        </div>
+      </div>
+
+
+   <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"
+               for="assetPriceId">Asset Price (in Cr.) </label>
+
+         <div class="col-md-8">
+                 <input class="form-control"
+                 id="assetPriceId"
+                 type="number"
+                 placeholder="price"
+                 formControlName="price"
+                 [ngClass]="{'is-invalid': displayMessage.price }" />
+         
+        </div> 
+      </div>
+
+         <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"
+               for="assetAreaId">Asset Area(in Sq.ft) </label>
+
+         <div class="col-md-8">
+                 <input class="form-control"
+                 id="assetAreaId"
+                 type="number"
+                 placeholder="Area"
+                 formControlName="area"
+                 [ngClass]="{'is-invalid': displayMessage.area }" />
+         
+        </div> 
+      </div>
+
+
+      <div formArrayName="tags">
+        <div class="form-group row mb-6"
+             *ngFor="let tag of tags.controls; let i=index">
+          <label class="col-md-2 col-form-label"
+                 [attr.for]="i">Label</label>
+
+          <div class="col-md-8">
+            <input class="form-control"
+                   [id]="i"
+                   type="text"
+                   placeholder="Label"
+                   [formControlName]="i" />
+          </div>
+          <button class="col-sm-1 btn btn-outline-warning btn-sm"
+                  type="button"
+                  title="Delete this search tag"
+                  (click)="deleteTag(i)">Delete
+          </button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 mb-2">
+          <button class="btn btn-outline-secondary btn-sm"
+                  type="button"
+                  title="Add a search tag"
+                  (click)="addTag()">Add Label
+          </button>
+        </div>
+      </div>
+      
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"
+               for="descriptionId">Description</label>
+
+        <div class="col-md-8">
+          <textarea class="form-control"
+                    id="descriptionId"
+                    placeholder="Description"
+                    rows=3
+                    formControlName="description"
+                    [ngClass]="{'is-invalid': displayMessage.description}"></textarea>
+          <span class="invalid-feedback">
+            {{ displayMessage.description}}
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <div class="offset-md-2 col-md-4">
+          <button class="btn btn-primary mr-3"
+                  style="width:80px;"
+                  type="submit"
+                  [title]="assetForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+                  [disabled]="!assetForm.valid">
+            Save
+          </button>
+          <button class="btn btn-outline-secondary mr-3"
+                  style="width:80px;"
+                  type="button"
+                  title="Cancel your edits"
+                  [routerLink]="['/assets']">
+            Cancel
+          </button>
+          <button class="btn btn-outline-warning"
+                  style="width:80px"
+                  type="button"
+                  title="Delete this asset"
+                  (click)="deleteAsset()">
+            Delete
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="alert alert-danger"
+       *ngIf="errorMessage">{{errorMessage}}
+  </div>
+</div>

@@ -1,5 +1,16 @@
 # AssetMgmtApp
 
+--------------------------------------------------------------------------------------------
+
+Demo of the project : https://shrikanth363.github.io/asset-mgmt-repo/welcome
+
+To run code locally after download,
+
+a. Run 'npm install' cli command (verify package.json' file is visible). All the dependencies would be downloaded to 'node_modules' folder.
+b. Run 'npm start' cli command. The project should compile and deploy to 'localhost:4200'.
+
+---------------------------------------------------------------------------------------------
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.20.
 
 ## Development server
